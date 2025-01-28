@@ -30,7 +30,7 @@ logger.stream = {
 
 // app
 const app = express();
-// var VTRouter = require('./routes/VT'); //tiling
+var VTRouter = require('./routes/VT'); //tiling
 var esriIFRouter = require('./routes/esriIF'); //esri interface (tilemap, etc..)
 app.use(cors());
 app.use(
@@ -40,7 +40,9 @@ app.use(
 );
 app.use(express.static(htdocsPath));
 // app.use('/VT', VTRouter);
-app.use('/esriIF', esriIFRouter); //esri interface
+app.use('/rest/services/VT', VTRouter);
+// app.use('/esriIF', esriIFRouter); //esri interface
+app.use('/rest/services/esriIF', esriIFRouter); //esri interface
 
 //for http
 app.listen(port, () => {
